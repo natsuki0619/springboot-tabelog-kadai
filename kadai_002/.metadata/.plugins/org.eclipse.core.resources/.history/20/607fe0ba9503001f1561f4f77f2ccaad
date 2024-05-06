@@ -1,0 +1,63 @@
+package com.example.nagoyameshi.controller;
+
+import java.util.List;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import com.example.nagoyameshi.entity.Profile;
+import com.example.nagoyameshi.form.ProfileEditForm;
+import com.example.nagoyameshi.repository.ProfileRepository;
+import com.example.nagoyameshi.service.ProfileService;
+
+@Controller
+@RequestMapping("/company")
+public class ProfileController {
+    private final ProfileRepository profileRepository;
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileRepository profileRepository, ProfileService profileService) {
+        this.profileRepository = profileRepository;
+        this.profileService = profileService;
+    }
+
+    @GetMapping("/profile")
+    public String profile(Model model) {
+        List<Profile> profiles = profileRepository.findAll();
+
+        model.addAttribute("profiles", profiles);
+
+        return "company/profile";
+    }
+
+    @GetMapping("/profileedit/{id}")
+    public String profileedit(@PathVariable(name = "id") Integer id, Model model) {
+        Profile profile = profileRepository.getReferenceById(id);
+        ProfileEditForm profileEditForm = new ProfileEditForm(profile.getId(), profile.getName(), profile.getAddress(),
+                profile.getRepresentative(), profile.getEstablishment(), profile.getCapital(), profile.getBusiness(),
+                profile.getEmployees());
+
+        model.addAttribute("profileEditForm", profileEditForm);
+
+        return "/profileedit/";
+
+    }
+
+    @PostMapping("/update")
+    public String update(@ModelAttribute @Validated ProfileEditForm profileEditForm, BindingResult bindingResult,
+            RedirectAttributes redirectAttributes) {
+
+        profileService.update(profileEditForm);
+        redirectAttributes.addFlashAttribute("successMessage", "会員情報を編集しました。");
+
+        return "redirect:/company/profile";
+    }
+}

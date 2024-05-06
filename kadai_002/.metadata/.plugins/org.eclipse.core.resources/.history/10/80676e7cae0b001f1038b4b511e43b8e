@@ -1,0 +1,21 @@
+ spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/nagoyameshi_db
+ spring.datasource.username=root
+ spring.datasource.password=natsu1162K13
+ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+ spring.sql.init.encoding=utf-8
+ spring.sql.init.mode=always
+
+ spring.servlet.multipart.max-file-size=5MB
+
+ spring.mail.host=smtp.gmail.com
+ spring.mail.port=587
+ spring.mail.username=matsubara.zyugyouyou@gmail.com
+ spring.mail.password=ubfq uyzj nerk dlwm
+ spring.mail.properties.mail.smtp.auth=true
+ spring.mail.properties.mail.smtp.starttls.enable=true
+
+spring.thymeleaf.cache=false
+spring.thymeleaf.prefix=file:src/main/resources/templates/
+
+ stripe.api-key=sk_test_51P75VUHm9CqxMevCEtfFeUDYcykSPVVgHlwS98PdnsvOQZxHbAto3ELermxR0Q6W4mZ1nHNgjYTouab7RdpTe6Bh009gtfkADe
+ stripe.webhook-secret=whsec_ea56dbbc842857d695154f2edc432e77beb7cce4dd8a11de32ea64ab292bf12f

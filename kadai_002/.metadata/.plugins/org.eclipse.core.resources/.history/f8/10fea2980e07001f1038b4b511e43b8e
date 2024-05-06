@@ -1,0 +1,38 @@
+document.addEventListener('DOMContentLoaded', function() {
+    var shopId = document.getElementById('Id').getAttribute('data-id');
+    
+    fetch('/reservation/' + shopId)
+        .then(function(response) {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(function(regularHolidays) {
+            var disabledWeekdays = regularHolidays.map(function(japaneseWeekday) {
+                return mapJapaneseWeekdayToNumber(japaneseWeekday);
+            });
+            
+            flatpickr('#fromReservationDate', {
+                locale: 'ja',
+                minDate: 'today',
+                dateFormat: 'Y-m-d',
+                disable: [
+                    function(date) {
+                        var dayOfWeek = date.getDay();
+                        return disabledWeekdays.includes(dayOfWeek);
+                    }
+                ]
+            });
+        })
+        .catch(function(error) {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+});
+
+ flatpickr('#fromReservationTime', {
+   enableTime: true,
+   noCalendar: true,
+   dateFormat: "H:i",
+   time_24hr: true,
+ });;

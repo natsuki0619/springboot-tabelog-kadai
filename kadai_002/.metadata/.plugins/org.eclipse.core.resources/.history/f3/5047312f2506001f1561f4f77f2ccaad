@@ -1,0 +1,100 @@
+package com.example.nagoyameshi.entity;
+
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+
+@Table(name = "shops")
+@JsonPropertyOrder({ "ID", "店舗名", "開店時間", "閉店時間", "定休日", "最低価格", "最高価格", "説明", "メニュー", "郵便番号", "住所", "電話番号", "カテゴリ",
+        "createdAt", "updated_at" })
+
+public class Shopcsv {
+
+    @JsonProperty("ID")
+
+    private Integer id;
+
+    @JsonProperty("店舗名")
+
+    private String name;
+
+    @JsonProperty("開店時間")
+
+    private String opening;
+
+    @JsonProperty("閉店時間")
+
+    private String closed;
+
+    @JsonProperty("定休日")
+
+    private String regularHoliday;
+
+    @JsonProperty("最低価格")
+
+    private Integer lowestPrice;
+
+    @JsonProperty("最高価格")
+
+    private Integer highestPrice;
+
+    @JsonProperty("説明")
+
+    private String capacity;
+
+    @JsonProperty("メニュー")
+
+    private String menu;
+
+    @JsonProperty("郵便番号")
+
+    private String postalCode;
+
+    @JsonProperty("住所")
+
+    private String address;
+
+    @JsonProperty("電話番号")
+
+    private String phoneNumber;
+
+    @JsonProperty("カテゴリ")
+
+    private String category;
+
+    @JsonProperty("createdAt")
+
+    private Timestamp createdAt;
+
+    @JsonProperty("updated_at")
+
+    private Timestamp updatedAt;
+
+    public Shopcsv() {
+    }
+
+    public Shopcsv(Integer id, String name, String opening, String closed, String regularHoliday,
+            Integer lowestPrice, Integer highestPrice, String capacity, String menu, String postalCode,
+            String address, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.opening = opening;
+        this.closed = closed;
+        this.regularHoliday = regularHoliday;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
+        this.capacity = capacity;
+        this.menu = menu;
+        this.postalCode = postalCode;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+
+    }
+
+}

@@ -1,0 +1,304 @@
+ html {
+   font-size: 14px;
+ }
+ 
+ body {
+   font-family: 'Noto Sans JP', sans-serif;  
+ }
+ 
+ h1 {
+   font-size: 1.5rem;
+ }
+ h2 {
+   font-size: 1.475rem;
+ }
+ 
+ h3 {
+   font-size: 1.25rem;
+ }
+ 
+ a {
+   color: rgb(255, 175, 40);
+   text-decoration: none !important;
+ }
+ 
+ a:hover {
+     color: rgb(255, 145, 45);
+ }
+ 
+.text-center {
+	 margin-bottom: 30px;
+	 }
+	 
+.page-link {
+	color: #fcbb3c;
+}
+	
+#hamburger_btn_check {
+	display: none;
+}
+
+.col-md-4 text-center {
+	margin:auto;
+	position:relative;	
+}
+
+.rounded-circle {
+	width: 50%;
+	height: 150px;
+	object-fit: cover;
+}
+
+.card-tltle-category {
+	color: black;
+}
+.rounded-circle img:hover {
+	filter: grayscale(100%);
+}
+ 
+.company {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  padding: 5px 11px 5px 15px;
+  text-decoration: none;
+  color: #89D5C9;
+  transition: .4s;
+}
+
+.company:before {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 3px;
+  background: rgb(255, 175, 40);
+}
+
+company:after {
+  position: absolute;
+  display: inline-block;
+  content: '';
+  width: 4px;
+  height: 100%;
+  top:0;
+  left: 100%;
+  border-radius: 3px;
+  background: rgb(255, 175, 40);
+}
+
+.comnapy:hover:before, .company:hover:after {
+  -webkit-transform: rotate(10deg);
+  transform: rotate(10deg);
+}
+
+ footer {
+   width: 100%;
+   height: 60px;
+   position: absolute;
+   bottom: 0;    
+   background-color: #FFDFA2;
+ }
+ 
+ .nagoyameshi-wrapper {
+   min-height: 100vh;
+   position: relative;
+   padding-bottom: 60px;
+   box-sizing: border-box;
+ }
+ 
+ .nagoyameshi-navbar {
+   min-height: 60px;
+   background-color: #FFDFA2;
+ }
+ 
+ .nagoyameshi-logo {
+   height: 50px;  
+ }
+ 
+ .nagoyameshi-btn {
+   background-color: #E25B45 !important;   
+   transition: 0.1s;
+ }
+ 
+ .nagoyameshi-btn:hover {
+   opacity: 0.8;   
+ }
+ 
+ .nagoyameshi-page-link {
+   color:  #E25B45
+ }
+ 
+ .nagoyameshi-page-link:hover {
+   color: rgb(255, 145, 45);
+ }
+ 
+ .nagoyameshi-active {
+   background-color: #FAC172!important;
+   border-color: #FF8357!important;
+ }
+ 
+ .nagoyameshi-pre-wrap {
+   /* 改行文字で行を折り返す */
+   white-space: pre-wrap;
+ }
+ 
+ .nagoyameshi-link-danger {
+     color: #f2594b;
+ }
+ 
+ .nagoyameshi-link-danger:hover {
+     color: darkorange;
+ }
+ 
+ .nagoyameshi-btn-danger {
+     background-color: #f2594b !important;
+     transition: 0.1s;
+ }
+ 
+ .nagoyameshi-btn-danger:hover {
+   opacity: 0.8;   
+ }
+ 
+ .nagoyameshi-dropdown-item:active {
+   background-color: #5196a6;
+ }
+ 
+ .nagoyameshi-card-link {
+   transition: 0.3s;
+ }
+ 
+ .nagoyameshi-card-link:hover {
+   opacity: 0.7;
+ }
+ 
+ .nagoyameshi-horizontal-card-image {
+   width: 100%;
+   height: 240px;
+   object-fit: cover;
+ }
+ 
+  .nagoyameshi-sort-box {
+   width: 150px;
+ }
+ 
+  .nagoyameshi-vertical-card-image {
+   width: 100%;
+   height: 150px;
+   object-fit: cover;
+ }
+ 
+ .nagoyameshi-search-form {
+   max-width: 300px;
+ }
+ 
+ .company {
+   color: darkgray;
+   font-size: 13px;
+   text-decoration: none;
+ }
+ 
+ .map {
+	   display: flex;
+  justify-content: center;
+ }
+ /* カルーセル */
+ .my_carousel_caption {
+  font-size: 52px;
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+  font-family: 'Lora', serif;
+  line-height: 1.5em;
+}
+
+.my_carousel_caption::before {
+  content: url(../img/logoSymbol_White.png);
+  display: block;
+}
+
+@media screen and (max-width:375px) {
+  .my_carousel_caption {
+    font-size: 27px;
+  }
+}
+
+.carousel-item {
+  height: 32rem;
+}
+
+.carousel-item>img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  height: 32rem;
+}
+
+  .about_us_bg {
+    background-color: #FFE6A5;
+  }
+  
+  .btn-social-giza a {
+  display: inline-block;
+  text-decoration: none;
+  font-size: 25px;
+}
+.btn-social-giza .fa-stack-1x {
+  color: white;
+  font-size: 18px;
+}
+.btn-social-giza .fa-stack-2x {
+  transition: .3s;
+}
+.btn-social-giza .btn-social-giza-twitter .fa-stack-2x {
+  color: #74c1f8;
+}
+.btn-social-giza .btn-social-giza-facebook .fa-stack-2x {
+  color: #668ad8;
+}
+.btn-social-giza .btn-social-giza-pocket .fa-stack-2x {
+  color: #f79393;
+}
+.btn-social-giza .btn-social-giza-feedly .fa-stack-2x {
+  color: #acde71;
+}
+.btn-social-giza a:hover .fa-stack-2x {
+  -webkit-transform: rotate(60deg);
+  transform: rotate(60deg);
+}
+
+
+/* 管理者メニュー*/
+.menu::after {
+  content: "メニュー";
+  margin: 0 auto 0;
+}
+
+.menu_title {
+  font-size: 18px;
+  font-weight: 600;
+  font-style: normal;
+}
+
+.menu_price {
+  font-size: 20px;
+  font-weight: 400;
+  font-family: 'Lora', serif;
+}
+
+/* レビュー */
+ .star {
+     color: gold;
+ }
+
+ 
+ @media screen and (min-width: 1400px) {
+   .nagoyameshi-container {
+     max-width: 1200px;
+   }
+ }

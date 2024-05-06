@@ -1,0 +1,23 @@
+$(document).ready(function() {
+var shopId = $('#Id').data('id');
+$.get('/reservation/' + shopId, function(regularholiday) {
+	initializeFlatpickr(regularholiday);
+
+let maxDate = new Date();
+ maxDate = maxDate.setMonth(maxDate.getMonth() + 3);
+
+ flatpickr('#fromReservationDate', {
+   locale: 'ja',
+   minDate: 'today',
+   dateFormat: "Y-m-d",
+    disable: [
+  function(date) {
+   var dayOfWeek = date.getDay().toString();
+   return regularholiday.includes(dayOfWeek);
+                }
+            ]
+        });
+       }
+            
+        );
+})

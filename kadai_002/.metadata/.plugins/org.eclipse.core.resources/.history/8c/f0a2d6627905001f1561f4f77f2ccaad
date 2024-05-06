@@ -1,0 +1,99 @@
+package com.example.nagoyameshi.entity;
+
+import java.sql.Timestamp;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Table(name = "shops")
+@JsonPropertyOrder({ "ID", "店舗名", "開店時間", "閉店時間", "定休日", "最低価格", "最高価格", "郵便番号", "住所", "電話番号" })
+@Data
+public class Shopcsv {
+
+    @JsonProperty("ID")
+    @Column(name = "id")
+    private Integer id;
+
+    @JsonProperty("店舗名")
+    @Column(name = "name")
+    private String name;
+
+    @JsonProperty("開店時間")
+    @Column(name = "opening")
+    private String opening;
+
+    @JsonProperty("閉店時間")
+    @Column(name = "closed")
+    private String closed;
+
+    @JsonProperty("定休日")
+    @Column(name = "regular_holiday")
+    private String regularHoliday;
+
+    @JsonProperty("最低価格")
+    @Column(name = "lowest_price")
+    private Integer lowestPrice;
+
+    @JsonProperty("最高価格")
+    @Column(name = "highest_price")
+    private Integer highestPrice;
+
+    @JsonProperty("説明")
+    @Column(name = "capacity")
+    private String capacity;
+
+    @JsonProperty("メニュー")
+    @Column(name = "menu")
+    private String menu;
+
+    @JsonProperty("郵便番号")
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    @JsonProperty("住所")
+    @Column(name = "address")
+    private String address;
+
+    @JsonProperty("電話番号")
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @JsonProperty("カテゴリ")
+    @Column(name = "category_id")
+    private String category;
+
+    @JsonProperty("createdAt")
+    @Column(name = "created_at", insertable = false, updatable = false)
+    private Timestamp createdAt;
+
+    @JsonProperty("updated_at")
+    @Column(name = "updated_at", insertable = false, updatable = false)
+    private Timestamp updatedAt;
+
+    public Shopcsv() {
+    }
+
+    public Shopcsv(Integer id, String name, String opening, String closed, String regularHoliday, Integer lowestPrice,
+            Integer highestPrice, String capacity, String menu, String postalCode, String address, String phoneNumber,
+            String category) {
+        this.id = id;
+        this.name = name;
+        this.opening = opening;
+        this.closed = closed;
+        this.regularHoliday = regularHoliday;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
+        this.capacity = capacity;
+        this.menu = menu;
+        this.postalCode = postalCode;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.category = category;
+
+    }
+
+}

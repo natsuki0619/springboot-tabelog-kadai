@@ -1,0 +1,33 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.nagoyameshi.entity.Profile;
+import com.example.nagoyameshi.form.ProfileEditForm;
+import com.example.nagoyameshi.repository.ProfileRepository;
+import com.example.nagoyameshi.repository.RoleRepository;
+
+@Service
+public class ProfileService {
+    private final ProfileRepository ProfileRepository;
+
+    public ProfileService(ProfileRepository profileRepository, RoleRepository roleRepository) {
+        this.ProfileRepository = profileRepository;
+    }
+
+    @Transactional
+    public void update(ProfileEditForm profileEditForm) {
+        Profile profile = ProfileRepository.getReferenceById(profileEditForm.getId());
+
+        profile.setName(profileEditForm.getName());
+        profile.setAddress(profileEditForm.getAddress());
+        profile.setRepresentative(profileEditForm.getRepresentative());
+        profile.setEstablishment(profileEditForm.getEstablishment());
+        profile.setCapital(profileEditForm.getCapital());
+        profile.setBusiness(profileEditForm.getBusiness());
+        profile.setEmployees(profileEditForm.getEmployees());
+
+        ProfileRepository.save(profile);
+    }
+}

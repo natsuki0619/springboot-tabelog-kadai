@@ -1,0 +1,26 @@
+$(document).ready(function() {
+var shopId = /* ここに店舗IDを設定するコード */;
+$.get('/reservation/' + shopId, function(regularholiday) {
+	initializeFlatpickr(regularholiday);
+
+let maxDate = new Date();
+ maxDate = maxDate.setMonth(maxDate.getMonth() + 3);
+
+ flatpickr('#fromReservationDate', {
+   locale: 'ja',
+   minDate: 'today',
+   dateFormat: "Y-m-d",
+    disable: [
+  function(date) {
+   var dayOfWeek = date.getDay().toString();
+   return regularholiday.includes(dayOfWeek);
+   }]
+ });;
+
+
+ flatpickr('#fromReservationTime', {
+   enableTime: true,
+   noCalendar: true,
+   dateFormat: "H:i",
+   time_24hr: true,
+ });;

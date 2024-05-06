@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <div th:replace="~{fragment :: meta}"></div>
+        <div th:replace="~{fragment :: styles}"></div>
+        <title>会員画面</title>
+    </head>
+        <body>
+        <div class="nagoyameshi-wrapper">
+            <!-- ヘッダー -->
+            <div th:replace="~{fragment :: header}"></div>
+            <main>
+                <div class="container pt-4 pb-5 nagoyameshi-container">
+                    <mdiv class="row justify-content-center">
+                        <div class="col-xl-5 col-lg-6 col-md-8">
+                            <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/}">店舗一覧</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">会員画面</li>
+                                </ol>
+                            </nav>
+                            <h1 class="mb-4 text-center">会員画面</h1>
+       <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/shops.jpeg" class="img-fluid" alt="会員情報">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+            <h4 class="mb-0 menu_title">会員情報</h4>
+                <p class="my-auto">編集</p>
+                <p><a class="btn btn-secondary" href="/admin/shops" role="button">会員情報</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+            <img src="/adminicon/category.jpeg" class="img-fluid" alt="予約">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">予約</h4>
+                <p class="my-auto">一覧</p>
+            <p><a class="btn btn-secondary" href="/admin/category" role="button">予約</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/users.jpeg" class="img-fluid" alt="お気に入り">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">お気に入り</h4>
+                <p class="my-auto">一覧</p>
+                <p><a class="btn btn-secondary" href="/admin/users" role="button">お気に入り</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/earnings.jpeg" class="img-fluid" alt="レビュー">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">レビュー</h4>
+                <p class="my-auto">一覧</p>
+                <p><a class="btn btn-secondary" href="@{/category/index}" role="button">レビュー</a></p>
+            </div>
+            </div>
+        </div>
+
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/company.jpeg" class="img-fluid" alt="クレジットカード">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">クレジットカード</h4>
+                <p class="my-auto">編集</p>
+                <p><a class="btn btn-secondary" href="/company/profile" role="button">クレジットカード</a></p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    </main>
+        <!-- フッター -->
+            <div th:replace="~{fragment :: footer}"></div>
+        </div>
+        <div th:replace="~{fragment :: scripts}"></div>
+    </body>
+</html>
+

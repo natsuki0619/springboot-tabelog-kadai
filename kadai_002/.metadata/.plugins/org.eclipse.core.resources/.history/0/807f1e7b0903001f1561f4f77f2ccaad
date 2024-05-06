@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <div th:replace="~{fragment :: meta}"></div>
+        <div th:replace="~{fragment :: styles}"></div>
+        <title>管理者画面</title>
+    </head>
+        <body>
+        <div class="nagoyameshi-wrapper">
+            <!-- ヘッダー -->
+            <div th:replace="~{fragment :: header}"></div>
+            <main>
+                <div class="container pt-4 pb-5 nagoyameshi-container">
+                    <mdiv class="row justify-content-center">
+                        <div class="col-xl-5 col-lg-6 col-md-8">
+                            <nav class="mb-4" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                <ol class="breadcrumb mb-0">
+                                    <li class="breadcrumb-item"><a th:href="@{/}">店舗一覧</a></li>
+                                    <li class="breadcrumb-item active" aria-current="page">管理者画面</li>
+                                </ol>
+                            </nav>
+
+                            <h1 class="mb-4 text-center">管理者画面</h1>
+        <div class="row">
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/shops.jpeg" class="img-fluid" alt="店舗一覧">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+            <h4 class="mb-0 menu_title">店舗</h4>
+                <p class="my-auto">一覧・編集・削除</p>
+                <p><a class="btn btn-secondary" href="/admin/shops" role="button">店舗</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+            <img src="/adminicon/category.jpeg" class="img-fluid" alt="カテゴリ一覧">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">カテゴリ</h4>
+                <p class="my-auto">一覧・編集・削除</p>
+            <p><a class="btn btn-secondary" href="/admin/category" role="button">カテゴリ</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/users.jpeg" class="img-fluid" alt="会員一覧">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">会員</h4>
+                <p class="my-auto">一覧</p>
+                <p><a class="btn btn-secondary" href="/admin/users" role="button">会員</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/earnings.jpeg" class="img-fluid" alt="売上集計">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">売上</h4>
+                <p class="my-auto">集計・出力</p>
+                <p><a class="btn btn-secondary" href="@{/category/index}" role="button">売上</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/company.jpeg" class="img-fluid" alt="会社情報">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">会社情報</h4>
+                <p class="my-auto">編集</p>
+                <p><a class="btn btn-secondary" href="/company/profile" role="button">会社情報</a></p>
+            </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-6">
+            <div class="row g-0 mb-4">
+            <div class="col-12 col-lg-5 text-center">
+                <img src="/adminicon/termsofservice.jpeg" class="img-fluid" alt="利用規約">
+            </div>
+            <div class="col-12 col-lg-7 p-4">
+                <h4 class="mb-0 menu_title">利用規約</h4>
+                <p class="my-auto">編集</p>
+            <p><a class="btn btn-secondary" href="/company/termsofservice" role="button">利用規約</a></p>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    </section>
+    </main>
+        <!-- フッター -->
+            <div th:replace="~{fragment :: footer}"></div>
+        </div>
+        <div th:replace="~{fragment :: scripts}"></div>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+let maxDate = new Date();
+ maxDate = maxDate.setMonth(maxDate.getMonth() + 3);
+
+ flatpickr('#fromReservationDate', {
+   locale: 'ja',
+   minDate: 'today',
+   maxDate: maxDate,
+   disable: [
+   function (date) {
+       date.getRegularHoliday()
+
+              '日' === 0;
+           '月' === 1;
+           '火' === 2;
+            return date.getRegularHoliday(); //日曜だけ選択不可
+          }
+          ],
+ });;
+
+ flatpickr('#fromReservationTime', {
+   enableTime: true,
+   noCalendar: true,
+   dateFormat: "H:i",
+   time_24hr: true
+
+ });;
+
+ mintime
+ maxtime

@@ -1,0 +1,15 @@
+package com.example.nagoyameshi.form;
+
+import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class TermsofserviceEditForm {
+
+    private Integer id;
+
+    @NotBlank(message = "利用規約を入力してください。")
+    private String sentence;
+}

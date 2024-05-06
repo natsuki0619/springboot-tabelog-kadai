@@ -1,0 +1,31 @@
+package com.example.nagoyameshi.entity;
+
+import java.util.List;
+
+import lombok.Data;
+
+@Data
+public class Csv {
+    
+    List<Integer> id;
+    
+    List<String> Name;
+    
+    List<String> Opening;
+    
+    List<String> Closed;
+    
+    List<String> RegularHoliday;
+    
+    List<String> LowestPrice;
+    
+    List<String> HighestPrice;
+    
+    List<String> PostalCode;
+    
+    List<String> Address;
+    
+    List<String> PhoneNumber;
+    
+    List<String> Category;
+}

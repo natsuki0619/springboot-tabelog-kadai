@@ -1,0 +1,26 @@
+package com.example.nagoyameshi.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.example.nagoyameshi.entity.Termsofservice;
+import com.example.nagoyameshi.form.TermsofserviceEditForm;
+import com.example.nagoyameshi.repository.TermsofserviceRepository;
+
+@Service
+public class TermsofserviceService {
+    private final TermsofserviceRepository TermsofserviceRepository;
+
+    public TermsofserviceService(TermsofserviceRepository termsofserviceRepository) {
+        this.TermsofserviceRepository = termsofserviceRepository;
+    }
+
+    @Transactional
+    public void update(TermsofserviceEditForm termsofserviceEditForm) {
+        Termsofservice termsofservice = TermsofserviceRepository.getReferenceById(termsofserviceEditForm.getId());
+
+        termsofservice.setSentence(termsofserviceEditForm.getSentence());
+
+        TermsofserviceRepository.save(termsofservice);
+    }
+}

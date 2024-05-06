@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+    <head>
+        <div th:replace="~{fragment :: meta}"></div>
+         <div th:replace="~{fragment :: styles}"></div>
+
+         <title>集計</title>
+    </head>
+    <body>
+        <div class="nagoyameshi-wrapper">
+            <div th:replace="~{fragment :: header}"></div>
+            <main>
+                <div class="container nagoyameshi-container pb-5">
+                    <div class="row justify-content-center">
+                        <div class="col-xxl-9 col-xl-10 col-lg-11">
+                            <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                                 <ol class="breadcrumb mb-0">
+                                     <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+                                     <li class="breadcrumb-item active" aria-current="page">集計</li>
+                                 </ol>
+                             </nav>
+
+                             <div class="text-center">
+                              <h1 class="mb-3 text-center">売上集計</h1>
+                              <br>
+                              <br>
+                              <div>
+                              <div class="total1">
+                                    <h4>会員内訳</h4>
+
+                                <br>
+                                <div>
+                                    <p class="total-count">有料会員数&nbsp;: &nbsp;<span class="total-count2" th:text="${premiumUsercount}"></span>&nbsp;人</p>
+                                    <p class="total-count">無料会員数&nbsp;: &nbsp;<span class="total-count2" th:text="${generalUserCount}"></span>&nbsp;人</p>
+                                </div>
+                            </div>
+                            <br>
+                              <br>
+                            <div class="total2">
+                                <h4>売 上</h4>
+                                <br>
+                                <div>
+                                    <p class="total-count">予約累計&nbsp;: &nbsp;<span class="total-count2" th:text="${totalReservationCount}"></span>&nbsp;件</p>
+                                    <p class="total-count">月間売上&nbsp;: &nbsp;<span class="total-count2" th:text="${premiumUsercount}*300"></span>&nbsp;円</p>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- フッター -->
+             <div th:replace="~{fragment :: footer}"></div>
+         </div>
+         <div th:replace="~{fragment :: scripts}"></div>
+          <script th:src="@{/js/tab.js}"></script>
+    </body>
+</html>

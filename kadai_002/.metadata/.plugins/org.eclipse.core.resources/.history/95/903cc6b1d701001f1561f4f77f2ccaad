@@ -1,0 +1,411 @@
+ <!DOCTYPE html>
+ <html lang="ja">
+ <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+     <head>
+         <div th:replace="~{fragment :: meta}"></div>
+         <div th:replace="~{fragment :: styles}"></div>
+         <title>NAGOYAMESHI</title>
+     </head>
+     <body>
+        <div class="nagoyameshi-wrapper">
+             <!-- ヘッダー -->
+             <div th:replace="~{fragment :: header}"></div>
+             <main>
+                 <div class="container pt-4 pb-5 nagoyameshi-container">
+                     <div th:if="${param.loggedIn}" class="alert alert-warning">
+                         ログインしました。
+                     </div>
+
+                     <div th:if="${param.loggedOut}" class="alert alert-warning">
+                         ログアウトしました。
+                     </div>
+                     <div th:if="${successMessage}" class="alert alert-warning">
+                         <span th:text="${successMessage}"></span>
+                     </div>
+
+
+                      <!-- ナビゲーションバー開始 -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container">
+        <a class="navbar-brand my_navbar_brand">
+            <a class="navbar-brand my_navbar_brand">
+
+
+        </a>
+        <div class="navbar-toggler hamburger_menu" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          　aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+           <input type="checkbox" id="hamburger_btn_check">
+          <label for="hamburger_btn_check" class="hamburger_btn">
+
+            <img class="btn_open" src="images/nav.png" alt="ナビゲーションバーのボタン">
+
+          </label>
+
+        </div>
+        <div class="collapse navbar-collapse justify-content" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" aria-current="page" href="#">HOME</a>
+            </li>
+
+
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" href="#search">SEARCH</a>
+            </li>
+
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" href="#new">NEW</a>
+            </li>
+
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" href="#category">CATEGORY</a>
+            </li>
+
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" href="#map">MAP</a>
+            </li>
+
+
+            <li class="nav-item px-2">
+              <a class="nav-link my_nav_link my-2" href="#aboutus">ABOUT US</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+     <!-- ************************************************ カルーセル開始 -->
+    <div id="myCarousel" class="carousel slide mb-5" data-bs-ride="carousel">
+      <ol class="carousel-indicators">
+        <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+        <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+      </ol>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="images/slider-1.jpg" alt="NAGOYAMESHI1">
+          <div class="carousel-caption">
+            <h1 class="my_carousel_caption">
+              Welcome to<br>
+              NAGOYAMESHI
+            </h1>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="images/slider-2.jpg" alt="NAGOYAMESHI2">
+          <div class="carousel-caption">
+            <h1 class="my_carousel_caption">
+              The NAGOYA&nbsp;wine&nbsp;and&nbsp;food
+            </h1>
+          </div>
+        </div>
+
+        <div class="carousel-item">
+          <img src="images/slider-3.jpg" alt="NAGOYAMESHI3">
+          <div class="carousel-caption">
+            <h1 class="my_carousel_caption">Get the Italian taste<br>
+              at the SAMURAI&nbsp;KITCHEN
+            </h1>
+          </div>
+        </div>
+
+      </div>
+      <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </a>
+
+      <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </a>
+    </div>
+    <!-- ************************************************ カルーセル終了 -->
+<section id="search">
+                     <div class="d-flex justify-content-center">
+                         <form method="get" th:action="@{/shops}" class="mb-5 nagoyameshi-search-form">
+                             <div class="input-group">
+                                 <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・目的地">
+                                 <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                                 </div>
+
+
+                     </div>
+                      <div class="d-flex justify-content-center">
+                                 <div class="listbtn">
+                                  <button type="submit" href="/shops" class="btn text-white shadow-sm w-100 nagoyameshi-btn">   店 舗 一 覧   </button>
+                                  </div>
+                     </div>
+                     </form>
+                     </section>
+
+                       <section id="new">
+
+                     <h2 class="text-center mt-5 mb-3">新着</h2>
+                     <div class="row row-cols-lg-5 row-cols-2 g-3 mb-5">
+                         <div class="col" th:each="newShop : ${newShops}">
+                             <a th:href="@{/shops/__${newShop.getId()}__}" class="link-dark nagoyameshi-card-link">
+                                 <div class="card h-100">
+                                     <img th:if="${newShop.getImageName()}" th:src="@{/storage/__${newShop.getImageName()}__}" class="card-img-top nagoyameshi-vertical-card-image" alt="店舗画像">
+                                     <img th:unless="${newShop.getImageName()}" th:src="@{/images/noImage.png}" class="card-img-top nagoyameshi-vertical-card-image" alt="NO IMAGE">
+                                     <div class="card-body">
+                                         <h3 class="card-title" th:text="${newShop.getName()}"></h3>
+                                         <p class="card-text mb-1">
+                                             <small class="text-muted" th:text="${newShop.getAddress()}"></small>
+                                         </p>
+                                         <p class="card-text">
+                                             <span th:text="${newShop.getLowestPrice()} + '円' + '～' + ${newShop.getHighestPrice() + '円'}"></span>
+                                         </p>
+
+                                     </div>
+                                 </div>
+                             </a>
+                         </div>
+                     </div>
+                       </section>
+
+                       <section id="category">
+
+                     <h2 class="text-center mt-5 mb-3">カテゴリから探す</h2>
+                     <div class="Category">
+  <div class="row">
+	 
+    <div class="col-md-4 text-center">
+		<h2 class="card-tltle-category">和 食</h2>
+ 
+		<a href="/shops?CategoryId=1" class="card-link" text="和食">
+		    <img src="storage/shop01.jpg" class="rounded-circle" alt="和食">
+		</a>
+ 
+   </a>
+                    
+
+    </div>
+
+  
+  
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=2" role="button">洋 食</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=3" role="button">中華料理</a></p>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=4" role="button">イタリア料理</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=5" role="button">フランス料理</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=6" role="button">韓国料理</a></p>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=7" role="button">喫茶店</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=8" role="button">海鮮料理</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=9" role="button">鍋料理</a></p>
+    </div>
+
+     <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=10" role="button">鉄板焼き</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=11" role="button">焼 肉</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+
+      <p><a class="categorybtn" href="/shops?CategoryId=12" role="button">寿 司</a></p>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=13" role="button">定 食</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=14" role="button">カレー</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=15" role="button">ラーメン</a></p>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=16" role="button">うどん</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=17" role="button">そば</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=18" role="button">居酒屋</a></p>
+    </div>
+     <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=19" role="button">バー</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=20" role="button">おでん</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=21" role="button">ハンバーガー</a></p>
+    </div>
+
+    <div class="container">
+  <div class="row">
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=22" role="button">パ ン</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=23" role="button">スイーツ</a></p>
+    </div>
+    <div class="col-md-4 text-center">
+
+      <p><a class="categorybtn" href="/shops?CategoryId=24" role="button">名古屋名物</a></p>
+    </div>
+  </div>
+    </div>
+  </div>
+     </div>
+  </div>
+  </section>
+
+
+
+                     <div class="row justify-content-center">
+                         <div class="col-xl-5 col-lg-6 col-md-8">
+<section id="map">
+                             <h2 class="text-center mt-5 mb-3">エリアから探す</h2>
+                             <section class="area">
+                            <!-- Image Map Generated by http://www.image-map.net/ -->
+                     <div class=map>
+<img class="map" src="images/aiti.png" usemap="#image-map">
+
+<map name="image-map">
+    <area target="_blank" alt="名古屋" title="名古屋" href="/shops?area=名古屋市" coords="290,364,366,525" shape="rect">
+    <area target="_blank" alt="一宮市" title="一宮市" href="/shops?area=一宮市" coords="167,208,222,289" shape="rect">
+    <area target="_blank" alt="瀬戸市" title="瀬戸市" href="/shops?area=瀬戸市" coords="461,284,499,363" shape="rect">
+    <area target="_blank" alt="春日井市" title="春日井市" href="/shops?area=瀬戸市" coords="432,299,358,335" shape="rect">
+    <area target="_blank" alt="犬山市" title="犬山市" href="/shops?area=犬山市" coords="430,175,347,231" shape="rect">
+    <area target="_blank" alt="江南市" title="江南市" href="/shops?area=江南市" coords="236,197,278,257" shape="rect">
+    <area target="_blank" alt="小牧市" title="小牧市" href="/shops?area=小牧市" coords="301,251,360,281" shape="rect">
+    <area target="_blank" alt="稲沢市" title="稲沢市" href="/shops?area=稲沢市" coords="132,312,211,366" shape="rect">
+    <area target="_blank" alt="尾張旭市" title="尾張旭市" href="/shops?area=尾張旭市" coords="449,348,385,382" shape="rect">
+    <area target="_blank" alt="岩倉市" title="岩倉市" href="/shops?area=岩倉市" coords="244,276,290,300" shape="rect">
+    <area target="_blank" alt="豊明市" title="豊明市" href="/shops?area=豊明市" coords="386,513,443,543" shape="rect">
+    <area target="_blank" alt="日進市" title="日進市" href="/shops?area=日進市" coords="386,439,446,466" shape="rect">
+    <area target="_blank" alt="清須市" title="清須市" href="/shops?area=清須市" coords="231,351,266,368" shape="rect">
+    <area target="_blank" alt="北名古屋市" title="北名古屋市" href="/shops?area=北名古屋市" coords="233,317,284,335" shape="rect">
+    <area target="_blank" alt="長久手市" title="長久手市" href="/shops?area=長久手市" coords="390,399,466,427" shape="rect">
+    <area target="_blank" alt="東郷町" title="東郷町" href="/shops?area=東郷町" coords="394,479,443,498" shape="rect">
+    <area target="_blank" alt="豊山町" title="豊山町" href="/shops?area=豊山町" coords="304,299,330,342" shape="rect">
+    <area target="_blank" alt="大口町" title="大口町" href="/shops?area=大口町" coords="294,217,326,236" shape="rect">
+    <area target="_blank" alt="扶桑町" title="扶桑町" href="/shops?area=扶桑町" coords="292,181,327,199" shape="rect">
+    <area target="_blank" alt="津島市" title="津島市" href="/shops?area=津島市" coords="132,402,180,427" shape="rect">
+    <area target="_blank" alt="愛西市" title="愛西市" href="/shops?area=愛西市" coords="81,361,111,434" shape="rect">
+    <area target="_blank" alt="弥富市" title="弥富市" href="/shops?area=弥富市" coords="135,490,184,506" shape="rect">
+    <area target="_blank" alt="あま市" title="あま市" href="/shops?area=あま市" coords="197,386,241,409" shape="rect">
+    <area target="_blank" alt="大治町" title="大治町" href="/shops?area=大治町" coords="199,431,237,446" shape="rect">
+    <area target="_blank" alt="蟹江町" title="蟹江町" href="/shops?area=蟹江町" coords="148,449,185,468" shape="rect">
+    <area target="_blank" alt="飛島村" title="飛島村" href="/shops?area=飛島村" coords="208,508,250,529" shape="rect">
+    <area target="_blank" alt="半田市" title="半田市" href="/shops?area=半田市" coords="292,702,336,724" shape="rect">
+    <area target="_blank" alt="常滑市" title="常滑市" href="/shops?area=常滑市" coords="223,684,258,749" shape="rect">
+    <area target="_blank" alt="東海市" title="東海市" href="/shops?area=東海市" coords="283,558,310,617" shape="rect">
+    <area target="_blank" alt="大府市" title="大府市" href="/shops?area=大府市" coords="338,552,387,577" shape="rect">
+    <area target="_blank" alt="知多市" title="知多市" href="/shops?area=知多市" coords="224,600,258,642" shape="rect">
+    <area target="_blank" alt="阿久比町" title="阿久比町" href="/shops?area=阿久比町" coords="275,649,315,676" shape="rect">
+    <area target="_blank" alt="東浦町" title="東浦町" href="/shops?area=東浦町" coords="332,599,362,643" shape="rect">
+    <area target="_blank" alt="南知多町" title="南知多町" href="/shops?area=南知多町" coords="288,881,349,905" shape="rect">
+    <area target="_blank" alt="美浜町" title="美浜町" href="/shops?area=美浜町" coords="248,828,305,853" shape="rect">
+    <area target="_blank" alt="武豊町" title="武豊町" href="/shops?area=武豊町" coords="280,752,309,801" shape="rect">
+    <area target="_blank" alt="岡崎市" title="岡崎市" href="/shops?area=岡崎市" coords="517,584,732,681" shape="rect">
+    <area target="_blank" alt="碧南市" title="碧南市" href="/shops?area=碧南市" coords="368,695,395,732" shape="rect">
+    <area target="_blank" alt="刈谷市" title="刈谷市" href="/shops?area=刈谷市" coords="379,595,406,637" shape="rect">
+    <area target="_blank" alt="豊田市" title="豊田市" href="/shops?area=豊田市" coords="523,351,802,528" shape="rect">
+    <area target="_blank" alt="安城市" title="安城市" href="/shops?area=安城市" coords="440,646,474,715" shape="rect">
+    <area target="_blank" alt="西尾市" title="西尾市" href="/shops?area=西尾市" coords="394,761,493,812" shape="rect">
+    <area target="_blank" alt="知立市" title="知立市" href="/shops?area=知立市" coords="428,574,456,613" shape="rect">
+    <area target="_blank" alt="高浜市" title="高浜市" href="/shops?area=高浜市" coords="368,658,408,678" shape="rect">
+    <area target="_blank" alt="みよし市" title="みよし市" href="/shops?area=みよし市" coords="464,456,497,515" shape="rect">
+    <area target="_blank" alt="幸田町" title="幸田町" href="/shops?area=幸田町" coords="521,765,545,717" shape="rect">
+    <area target="_blank" alt="豊橋市" title="豊橋市" href="/shops?area=豊橋市" coords="705,818,804,971" shape="rect">
+    <area target="_blank" alt="豊川市" title="豊川市" href="/shops?area=豊橋市" coords="652,728,757,785" shape="rect">
+    <area target="_blank" alt="蒲郡市" title="蒲郡市" href="/shops?area=蒲郡市" coords="560,792,627,819" shape="rect">
+    <area target="_blank" alt="新城市" title="新城市" href="/shops?area=新城市" coords="769,600,966,700" shape="rect">
+    <area target="_blank" alt="田原市" title="田原市" href="/shops?area=田原市" coords="463,944,665,1029" shape="rect">
+    <area target="_blank" alt="設楽町" title="設楽町" href="/shops?area=設楽町" coords="834,378,932,558" shape="rect">
+    <area target="_blank" alt="東栄町" title="東栄町" href="/shops?area=東栄町" coords="966,478,1046,567" shape="rect">
+    <area target="_blank" alt="豊根村" title="豊根村" href="/shops?area=豊根村" coords="966,370,1108,442" shape="rect">
+</map>
+                         </div>
+                     </div>
+                </div>
+                </section>
+            </main>
+            <a class="company" th:href="@{/admin/index}">管理者</a>
+            <a class="aaa" href="/member/index">会員</a>
+             <a class="company" th:href="@{/subscription/register}">お気に入り</a>
+             <section id="#aboutus">
+              <div class="mb-3 text-center">
+                      <a class="company" th:href="@{/company/profile}">会社概要</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="company" th:href="@{/company/termsofservice}">利用規約</a>
+
+              </div>
+              </section>
+
+            <!-- フッター -->
+            <div th:replace="~{fragment :: footer}"></div>
+        </div>
+        <div th:replace="~{fragment :: scripts}"></div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/image-map-resizer/1.0.10/js/imageMapResizer.min.js"></script>
+<script>
+  imageMapResize();
+</script>
+  </body>
+</html>
+

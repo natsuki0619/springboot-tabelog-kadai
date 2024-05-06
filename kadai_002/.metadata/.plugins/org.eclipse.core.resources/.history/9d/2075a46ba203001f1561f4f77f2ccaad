@@ -1,0 +1,12 @@
+const stripe = Stripe('pk_test_51P75VUHm9CqxMevCFYGIquHgyjlCaDux340fPx1fPO7AvXnruT2lGdZP8KaBxz6OXDxB4fzBp642VPzG1B2llmIT00HTfWYIJh');
+ const paymentButton = document.querySelector('#paymentButton');
+ 
+const elements = stripe.elements();
+const cardElement = elements.create('card');
+cardElement.mount('#card-element');
+ 
+ paymentButton.addEventListener('click', () => {
+   stripe.redirectToCheckout({
+     sessionId: sessionId
+   })
+ });

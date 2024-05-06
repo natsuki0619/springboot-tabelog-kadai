@@ -1,0 +1,66 @@
+package com.example.nagoyameshi.form;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Table(name = "shops")
+@JsonPropertyOrder({ "ID", "店舗名", "開店時間", "閉店時間", "定休日", "最低価格", "最高価格", "郵便番号", "住所", "電話番号", "カテゴリ" })
+@Data
+public class ShopCsv {
+
+    @JsonProperty("ID")
+    private Integer id;
+
+    @JsonProperty("店舗名")
+    private String name;
+
+    @JsonProperty("開店時間")
+    private String opening;
+
+    @JsonProperty("閉店時間")
+    private String closed;
+
+    @JsonProperty("定休日")
+    private String regularHoliday;
+
+    @JsonProperty("最低価格")
+    private String lowestPrice;
+
+    @JsonProperty("最高価格")
+    private String highestPrice;
+
+    @JsonProperty("郵便番号")
+    private String postalCode;
+
+    @JsonProperty("住所")
+    private String address;
+
+    @JsonProperty("電話番号")
+    private String phoneNumber;
+
+    @JsonProperty("カテゴリ")
+    private String category;
+
+    public CsvForm() {
+    }
+
+    public CsvForm(Integer id, String name, String opening, String closed, String regularHoliday, String lowestPrice,
+            String highestPrice, String postalCode, String address, String phoneNumber, String category) {
+        this.id = id;
+        this.name = name;
+        this.opening = opening;
+        this.closed = closed;
+        this.regularHoliday = regularHoliday;
+        this.lowestPrice = lowestPrice;
+        this.highestPrice = highestPrice;
+        this.postalCode = postalCode;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.category = category;
+
+    }
+
+}

@@ -1,0 +1,9 @@
+addNewLine=false
+askBeforeConvertAll=false
+disallowedInPath=\ \r\n"'*?><|\=(){};&$,%@
+eclipse.preferences.version=1
+javaTabWidthForJava=false
+org.eclipse.jdt.ui.editor.tab.width=4
+replaceAllTabs=true
+saveAndConvert=true
+useModulo4Tabs=true

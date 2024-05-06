@@ -1,0 +1,45 @@
+package com.example.nagoyameshi.repository;
+
+import java.util.List;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+import com.example.nagoyameshi.entity.Category;
+import com.example.nagoyameshi.entity.Shop;
+
+public interface ShopRepository extends JpaRepository<Shop, Integer> {
+    public Page<Shop> findByNameLike(String keyword, Pageable pageable);
+
+    public Page<Shop> findByNameLikeOrAddressLikeOrderByCreatedAtDesc(String nameKeyword, String addressKeyword,
+            Pageable pageable);
+
+    public Page<Shop> findByNameLikeOrAddressLikeOrderByHighestPriceAsc(String nameKeyword, String addressKeyword,
+            Pageable pageable);
+
+    public Page<Shop> findByAddressLikeOrderByCreatedAtDesc(String area, Pageable pageable);
+
+    public Page<Shop> findByAddressLikeOrderByHighestPriceAsc(String area, Pageable pageable);
+
+    public Page<Shop> findByHighestPriceLessThanEqualOrderByCreatedAtDesc(Integer highestPrice, Pageable pageable);
+
+    public Page<Shop> findByHighestPriceLessThanEqualOrderByHighestPriceAsc(Integer highestPrice, Pageable pageable);
+
+    public Page<Shop> findAllByOrderByCreatedAtDesc(Pageable pageable);
+
+    public Page<Shop> findAllByOrderByHighestPriceAsc(Pageable pageable);
+
+    public List<Shop> findTop10ByOrderByCreatedAtDesc();
+
+    public Shop findByCategory(Category category);
+
+    public Page<Shop> findByCategoryId(Integer categoryId, Pageable pageable);
+
+    public Page<Shop> findByCategoryIdOrderByCreatedAtDesc(Integer categoryId, Pageable pageable);
+
+    @Query("SELECT sh.regularHoliday FROM Shop sh WHERE sh.id = :id")
+    List<String> findRegularHolidaysByShopId(@Param("id") Integer id);
+}

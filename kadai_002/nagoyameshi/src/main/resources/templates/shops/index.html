@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+ <html xmlns:th="https://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+     <head>
+         <div th:replace="~{fragment :: meta}"></div>
+         <div th:replace="~{fragment :: styles}"></div>
+         <title>店舗一覧</title>
+     </head>
+     <body>
+         <div class="nagoyameshi-wrapper">
+             <!-- ヘッダー -->
+             <div th:replace="~{fragment :: header}"></div>
+             <main>
+                 <div class="container nagoyameshi-container pb-5">
+                     <div class="row justify-content-center">
+                         <nav class="my-3" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                             <ol class="breadcrumb mb-0">
+                                 <li class="breadcrumb-item"><a th:href="@{/}">ホーム</a></li>
+                                 <li class="breadcrumb-item active" aria-current="page">店舗一覧</li>
+                             </ol>
+                         </nav>
+                         <div class="col-xl-3 col-lg-4 col-md-12">
+                             <form method="get" th:action="@{/shops}" class="w-100 mb-3">
+                                 <div class="input-group">
+                                     <input type="text" class="form-control" name="keyword" th:value="${keyword}" placeholder="店舗名・目的地">
+                                     <button type="submit" class="btn text-white shadow-sm nagoyameshi-btn">検索</button>
+                                 </div>
+                             </form>
+                                 <div class="card mb-3">
+                                 <div class="card-header">
+                                     エリアから探す
+                                 </div>
+                                 <div class="card-body">
+                                     <form method="get" th:action="@{/shops}" class="w-100">
+                                         <div class="form-group mb-3">
+                                             <select class="form-control form-select" name="area">
+                                                 <option value="" hidden>選択してください</option>
+                                                 <optgroup label="尾張地方（名古屋）">
+                                                     <option value="名古屋市" th:selected="${area == '名古屋市'}">名古屋市</option>
+                                                 </optgroup>
+                                                 <optgroup label="尾張地方（尾張）">
+                                                     <option value="一宮市" th:selected="${area == '一宮市'}">一宮市</option>
+                                                     <option value="瀬戸市" th:selected="${area == '瀬戸市'}">瀬戸市</option>
+                                                     <option value="春日井市" th:selected="${area == '春日井市'}">春日井市</option>
+                                                     <option value="犬山市" th:selected="${area == '犬山市'}">犬山市</option>
+                                                     <option value="江南市" th:selected="${area == '江南市'}">江南市</option>
+                                                     <option value="小牧市" th:selected="${area == '小牧市'}">小牧市</option>
+                                                     <option value="稲沢市" th:selected="${area == '稲沢市'}">稲沢市</option>
+                                                     <option value="尾張旭市" th:selected="${area == '尾張旭市'}">尾張旭市</option>
+                                                     <option value="岩倉市" th:selected="${area == '岩倉市'}">岩倉市</option>
+                                                     <option value="豊明市" th:selected="${area == '豊明市'}">豊明市</option>
+                                                     <option value="日進市" th:selected="${area == '日進市'}">日進市</option>
+                                                     <option value="清須市" th:selected="${area == '清須市'}">清須市</option>
+                                                     <option value="北名古屋市" th:selected="${area == '北名古屋市'}">北名古屋市</option>
+                                                     <option value="長久手市" th:selected="${area == '長久手市'}">長久手市</option>
+                                                     <option value="東郷町" th:selected="${area == '東郷町'}">東郷町</option>
+                                                     <option value="豊山町" th:selected="${area == '豊山町'}">豊山町</option>
+                                                     <option value="大口町" th:selected="${area == '大口町'}">大口町</option>
+                                                     <option value="扶桑町" th:selected="${area == '扶桑町'}">扶桑町</option>
+                                                 </optgroup>
+                                                 <optgroup label="尾張地方（海部）">
+                                                     <option value="津島市" th:selected="${area == '津島市'}">津島市</option>
+                                                     <option value="愛西市" th:selected="${area == '愛西市'}">愛西市</option>
+                                                     <option value="弥富市" th:selected="${area == '弥富市'}">弥富市</option>
+                                                     <option value="あま市" th:selected="${area == 'あま市'}">あま市</option>
+                                                     <option value="大治町" th:selected="${area == '大治町'}">大治町</option>
+                                                     <option value="蟹江町" th:selected="${area == '蟹江町'}">蟹江町</option>
+                                                     <option value="飛島村" th:selected="${area == '飛島村'}">飛島村</option>
+                                                 </optgroup>
+                                                 <optgroup label="尾張地方（知多）">
+                                                     <option value="半田市" th:selected="${area == '半田市'}">半田市</option>
+                                                     <option value="常滑市" th:selected="${area == '常滑市'}">常滑市</option>
+                                                     <option value="東海市" th:selected="${area == '東海市'}">東海市</option>
+                                                     <option value="大府市" th:selected="${area == '大府市'}">大府市</option>
+                                                     <option value="知多市" th:selected="${area == '知多市'}">知多市</option>
+                                                     <option value="阿久比町" th:selected="${area == '阿久比町'}">阿久比町</option>
+                                                     <option value="東浦町" th:selected="${area == '東浦町'}">東浦町</option>
+                                                     <option value="南知多町" th:selected="${area == '南知多町'}">南知多町</option>
+                                                     <option value="美浜町" th:selected="${area == '美浜町'}">美浜町</option>
+                                                     <option value="武豊町" th:selected="${area == '武豊町'}">武豊町</option>
+                                                 </optgroup>
+                                                 <optgroup label="三河地方（西三河）">
+                                                     <option value="岡崎市" th:selected="${area == '岡崎市'}">岡崎市</option>
+                                                     <option value="碧南市" th:selected="${area == '碧南市'}">碧南市</option>
+                                                     <option value="刈谷市" th:selected="${area == '刈谷市'}">刈谷市</option>
+                                                      <option value="豊田市" th:selected="${area == '豊田市'}">豊田市</option>
+                                                     <option value="安城市" th:selected="${area == '安城市'}">安城市</option>
+                                                     <option value="西尾市" th:selected="${area == '西尾市'}">西尾市</option>
+                                                      <option value="知立市" th:selected="${area == '知立市'}">知立市</option>
+                                                     <option value="高浜市" th:selected="${area == '高浜市'}">高浜市</option>
+                                                     <option value="みよし市" th:selected="${area == 'みよし市'}">みよし市</option>
+                                                      <option value="幸田町" th:selected="${area == '幸田町'}">幸田町</option>
+                                                 </optgroup>
+                                                 <optgroup label="三河地方（東三河）">
+                                                     <option value="豊橋市" th:selected="${area == '豊橋市'}">豊橋市</option>
+                                                     <option value="豊川市" th:selected="${area == '豊川市'}">豊川市</option>
+                                                     <option value="蒲郡市" th:selected="${area == '蒲郡市'}">蒲郡市</option>
+                                                     <option value="新城市" th:selected="${area == '新城市'}">新城市</option>
+                                                     <option value="田原市" th:selected="${area == '田原市'}">田原市</option>
+                                                     <option value="設楽町" th:selected="${area == '設楽町'}">設楽町</option>
+                                                     <option value="東栄町" th:selected="${area == '東栄町'}">東栄町</option>
+                                                     <option value="豊根村" th:selected="${area == '豊根村'}">豊根村</option>
+                                                 </optgroup>
+                                             </select>
+                                         </div>
+                                         <div class="form-group">
+                                             <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">検索</button>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                             <div class="card mb-3">
+                                <div class="card-header">
+                                    カテゴリから探す
+                                </div>
+                                <div class="card-body">
+                                    <form method="get" th:action="@{/shops}" class="w-100">
+                                        <div class="form-group mb-3">
+                                            <select select class="form-control form-select" name="CategoryId">
+                                                <option value="" hidden>選択してください</option>
+                                                <option th:each="category : ${category}" th:value="${category.id}" th:text="${category.categoryName}"></option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">検索</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                             <div class="card mb-3">
+                                 <div class="card-header">
+                                     予算から探す
+                                 </div>
+                                 <div class="card-body">
+                                     <form method="get" th:action="@{/shops}" class="w-100">
+                                         <div class="form-group mb-3">
+                                             <select class="form-control form-select" name="HighestPrice">
+                                                 <option value="" hidden>選択してください</option>
+                                                 <option value="1000" th:selected="${HighestPrice == 1000}">1,000円以内</option>
+                                                 <option value="2000" th:selected="${HighestPrice == 2000}">2,000円以内</option>
+                                                 <option value="3000" th:selected="${HighestPrice == 3000}">3,000円以内</option>
+                                                 <option value="4000" th:selected="${HighestPrice == 4000}">4,000円以内</option>
+                                                 <option value="5000" th:selected="${HighestPrice == 5000}">5,000円以内</option>
+                                                 <option value="10000" th:selected="${HighestPrice == 10000}">10,000円以内</option>
+                                             </select>
+                                         </div>
+                                         <div class="form-group">
+                                             <button type="submit" class="btn text-white shadow-sm w-100 nagoyameshi-btn">検索</button>
+                                         </div>
+                                     </form>
+                                 </div>
+                             </div>
+                         </div>
+
+                         <div class="col">
+                                 <div class="d-flex justify-content-between flex-wrap">
+                                 <p th:if="${shopPage.getTotalPages() > 1}" class="fs-5 mb-3" th:text="${'検索結果：' + shopPage.getTotalElements() + '件' + '（' + (shopPage.getNumber() + 1) + ' / ' + shopPage.getTotalPages() + ' ページ）'}"></p>
+                                 <p th:unless="${shopPage.getTotalPages() > 1}" class="fs-5 mb-3" th:text="${'検索結果：' + shopPage.getTotalElements() + '件'}"></p>
+
+                                    <form method="get" th:action="@{/shops}" class="mb-3 nagoyameshi-sort-box">
+                                     <input th:if="${keyword}" type="hidden" name="keyword" th:value="${keyword}">
+                                     <input th:if="${area}" type="hidden" name="area" th:value="${area}">
+                                     <input th:if="${highestPrice}" type="hidden" name="highestPrice" th:value="${highestPrice}">
+                                     <select class="form-select form-select-sm" name="order" onChange="this.form.submit();">
+                                         <option value="createdAtDesc" th:selected="${order == 'createdAtDesc' || order == null}">新着順</option>
+                                         <option value="highestPriceAsc" th:selected="${order == 'highestPriceAsc'}">料金が安い順</option>
+                                     </select>
+                                 </form>
+                           </div>
+                             <div class="mb-3" th:each="shop : ${shopPage}">
+                                 <a th:href="@{/shops/__${shop.getId()}__}" class="link-dark nagoyameshi-card-link">
+                                     <div class="card h-100">
+                                         <div class="row g-0">
+                                             <div class="col-md-4">
+                                                 <img th:if="${shop.getImageName()}" th:src="@{/storage/__${shop.getImageName()}__}" class="card-img-top nagoyameshi-horizontal-card-image" alt="店舗画像">
+                                                 <img th:unless="${shop.getImageName()}" th:src="@{/images/noImage.png}" class="card-img-top nagoyameshi-horizontal-card-image" alt="NO IMAGE">
+                                             </div>
+                                             <div class="col-md-8">
+                                                 <div class="card-body">
+                                                     <h3 class="card-title mb-3" th:text="${shop.getName()}"></h3>
+                                                     <hr class="mb-3">
+
+                                                     <p class="card-text mb-2">
+                                                         <span th:text="${shop.getCapacity()}"></span>
+                                                     </p>
+                                                     <p class="card-text mb-2">
+                                                         <small class="text-muted" th:text="${'〒' + shop.getPostalCode()}"></small>
+                                                         <small class="text-muted" th:text="${shop.getAddress()}"></small>
+                                                     </p>
+                                                     <p class="card-text">
+                                                         <span th:text="${shop.getLowestPrice()} + '円' + '～' + ${shop.getHighestPrice() + '円'}"></span>
+                                                     </p>
+                                                 </div>
+                                             </div>
+                                         </div>
+                                     </div>
+                                 </a>
+                             </div>
+                             <!-- ページネーション -->
+                             <div th:if="${shopPage.getTotalPages() > 1}" class="d-flex justify-content-center">
+                                 <nav aria-label="店舗一覧ページ">
+                                     <ul class="pagination">
+                                         <li class="page-item">
+                                             <span th:if="${shopPage.isFirst()}" class="page-link disabled">前</span>
+                                             <a th:unless="${shopPage.isFirst()}" th:href="@{/shops(page = ${shopPage.getNumber() - 1}, keyword = ${keyword}, area = ${area}, highest_price = ${highest_price}, order = ${order})}" class="page-link nagoyameshi-page-link">前</a>
+                                         </li>
+                                         <li th:each="i : ${#numbers.sequence(0, shopPage.getTotalPages() - 1)}" class="page-item">
+                                             <span th:if="${i == shopPage.getNumber()}" class="page-link active nagoyameshi-active" th:text="${i + 1}"></span>
+                                             <a th:unless="${i == shopPage.getNumber()}" th:href="@{/shops(page = ${i}, keyword = ${keyword}, area = ${area}, highest_price = ${highest_price}, order = ${order})}" class="page-link nagoyameshi-page-link" th:text="${i + 1}"></a>
+                                         </li>
+                                         <li class="page-item">
+                                             <span th:if="${shopPage.isLast()}" class="page-link disabled">次</span>
+                                              <a th:unless="${shopPage.isLast()}" th:href="@{/shops(page = ${shopPage.getNumber() + 1}, keyword = ${keyword}, area = ${area}, highest_price = ${highest_price}, order = ${order})}" class="page-link naogoyameshi-page-link">次</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+            <!-- フッター -->
+            <div th:replace="~{fragment :: footer}"></div>
+        </div>
+        <div th:replace="~{fragment :: scripts}"></div>
+  </body>
+</html>

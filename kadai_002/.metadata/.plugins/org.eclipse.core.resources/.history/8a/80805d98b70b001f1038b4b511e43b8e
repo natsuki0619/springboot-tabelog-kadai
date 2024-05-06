@@ -1,0 +1,73 @@
+package com.example.nagoyameshi.entity;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Table;
+import lombok.Data;
+
+@Data
+@Table(name = "users")
+@JsonPropertyOrder({ "ID", "名前", "ふりがな", "郵便番号", "住所", "電話番号", "メールアドレス", "パスワード", "role_id", "enabled",
+        "createdAt", "updated_at" })
+
+public class Usercsv {
+
+    @JsonProperty("ID")
+    @Column(name = "id")
+    private Integer id;
+
+    @JsonProperty("名前")
+    @Column(name = "name")
+    private String name;
+
+    @JsonProperty("ふりがな")
+    @Column(name = "furigana")
+    private String furigana;
+
+    @JsonProperty("郵便番号")
+    @Column(name = "postal_code")
+    private String postalCode;
+
+    @JsonProperty("住所")
+    @Column(name = "address")
+    private String address;
+
+    @JsonProperty("電話番号")
+    @Column(name = "phone_number")
+    private String phoneNumber;
+
+    @JsonProperty("メールアドレス")
+    @Column(name = "email")
+    private String email;
+
+    @JsonProperty("パスワード")
+    @Column(name = "password")
+    private String password;
+
+    @JsonProperty("role_id")
+    @Column(name = "role_id")
+    private Role role;
+
+    @JsonProperty("enabled")
+    @Column(name = "enabled")
+    private Boolean enabled;
+
+    public Usercsv() {
+    }
+
+    public Usercsv(Integer id, String name, String furigana, String postalCode, String address,
+            String phoneNumber, String email, String password, Role role, Boolean enabled) {
+        this.id = id;
+        this.name = name;
+        this.furigana = furigana;
+        this.postalCode = postalCode;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.enabled = enabled;
+    }
+}

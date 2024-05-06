@@ -1,0 +1,29 @@
+document.addEventListener('DOMContentLoaded', function() {
+	var Id = document.getElementById('Id').getAttribute('Id');
+	fetch('/reservation/' + Id)
+		var disabledWeekdays = regularholiday.map(day => parseInt(day));
+let maxDate = new Date();
+ maxDate = maxDate.setMonth(maxDate.getMonth() + 3);
+
+ flatpickr('#fromReservationDate', {
+   locale: 'ja',
+   minDate: 'today',
+   dateFormat: "Y-m-d",
+   disable: [                     
+function(date) {                   
+var dayOfWeek = date.getDay();                         
+return disabledWeekdays.includes(dayOfWeek);
+  }
+            ]
+        });
+    });  
+           
+;
+ 
+
+ flatpickr('#fromReservationTime', {
+   enableTime: true,
+   noCalendar: true,
+   dateFormat: "H:i",
+   time_24hr: true,
+ });;
